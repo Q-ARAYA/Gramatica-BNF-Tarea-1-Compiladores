@@ -1,0 +1,71 @@
+
+-------------------------Terminales-------------------------
+"0" "1" "2" "3" "4" "5" "6" "7" "8" "9"
+
+"a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+"n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+"A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
+"N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+
+"|:"
+":|"
+"!" 
+
+"|:"
+":|"
+"!"
+"<-"
+"~"
+","
+"<|"
+"|>"
+"<<"
+">>"
+
+"int"
+"bool"
+"float"
+"string"
+"char"
+
+-------------------------No terminales-------------------------
+<digito>
+<digitoSincero>
+<letra>
+<digito>
+<digitoSinCero>
+<letra>
+<bloque_inicio>
+<bloque_fin>
+<fin_sentencia>
+<asignacion>
+<separador>
+<coma>
+<parentesis_apertura>
+<parentesis_cierre>
+<indice_apertura>
+<indice_cierre>
+<tipo>
+
+-------------------------mbolo inicial-------------------------
+
+
+
+-------------------------Producciones-------------------------
+
+<digito> ::= [0-9]
+<digitoSincero> ::=[1-9]
+<letra>::= [a-zA-Z]
+
+<bloque_inicio> ::= "|:"
+<bloque_fin> ::= ":|"
+<fin_sentencia> ::= "!"
+<asignacion> ::= "<-"
+<separador> ::= "~"
+<coma> ::= ","
+<parentesis_apertura> ::= "<|"
+<parentesis_cierre> ::= "|>"
+<indice_apertura> ::= "<<"
+<indice_cierre> ::= ">>"
+<tipo> ::= "int" | "bool" | "float" | "string" | "char"
+
