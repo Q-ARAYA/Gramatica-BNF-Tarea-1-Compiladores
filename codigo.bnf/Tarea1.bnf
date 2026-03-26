@@ -7,26 +7,62 @@
 "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
 "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
 
-"|:"
-":|"
-"!" 
+Operadores y delimitadores:
 
-"|:"
-":|"
-"!"
-"<-"
-"~"
-","
-"<|"
-"|>"
-"<<"
-">>"
+"|:" (inicio de bloque de codigo)
+":|" (Cierre de bloque de codigo)
+"!"  (fin de sentencia)
+"<-" (asignacion)
+"~"  (separador tipo~identificador)
+","  (separador entre parametros que recibe la funcion)
+"<|" (Apertura de parentesis)
+"|>" (Cierre de parentesis)
+"<<" (Apertura de indice)
+">>" (cierre de indice)
+"¡¡" (comentario de linea)
+"{-" (inicio comentario de bloque)
+"-}" (Cierre comentario de bloqeu)
 
+Operadores aritmeticos:
+"+"
+"-"
+"*"
+"/"
+"%"
+"^"
+
+Operadores Logicos:
+"@" (and)
+"#" (or)
+"$" (not)
+
+Operadores relacionales:
+"equal<| op1,op2 |>"
+"n_equal<| op1,op2 |>"
+"less_t<| op1,op2 |>"
+"less_te<| op1,op2 |>"
+"greather_t<| op1,op2 |>"
+"greather_te<| op1,op2 |>"
+
+Palabras reservadas:
 "int"
 "bool"
 "float"
 "string"
 "char"
+
+"if"
+"else"
+"switch"
+"case"
+"default"
+"return"
+"break"
+"cin"
+"cout"
+"true"
+"false"
+"__main__"
 
 -------------------------No terminales-------------------------
 <digito>
@@ -47,6 +83,15 @@
 <indice_cierre>
 <tipo>
 
+<param>
+<lista_params>
+<funcion>
+<lista_funciones>
+<programa>
+<decl_var>
+<elemento>
+<elemento_num>
+<lista_elementos>
 -------------------------mbolo inicial-------------------------
 
 
@@ -68,4 +113,18 @@
 <indice_apertura> ::= "<<"
 <indice_cierre> ::= ">>"
 <tipo> ::= "int" | "bool" | "float" | "string" | "char"
+
+<param> ::= <tipo> ~ ID
+<lista_params> ::= <param> | <param>, <lista_params> | ε
+<funcion> ::= <tipo> ~ ID <| <lista_params> |> |: <lista_sentencias> :|
+<lista_funciones> ::= <funcion> <lista_funciones> | <comentario> <lista_funciones>
+                        | ε
+<programa> ::= <lista_funciones> <main>
+
+<decl_var> ::= <tipo> ~ ID
+
+<elemento> ::= <elemento_num> | CADENA | BOOL | CARACTER
+<elemento_num ::= ENTERO | FLOAT | EXPONENCIAL | FRACCION
+
+<lista_elementos> ::= <elemento> | <elemento> , <lista_elementos> | ε
 
