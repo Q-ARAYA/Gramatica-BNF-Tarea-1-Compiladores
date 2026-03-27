@@ -95,6 +95,8 @@ Palabras reservadas:
 <elemento_num>
 <lista_elementos>
 <comentario>
+
+<arreglo>
 -------------------------mbolo inicial-------------------------
 
 
@@ -133,7 +135,7 @@ Palabras reservadas:
 <digitoSincero> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 <lista_digitos> ::= <digito> <lista_digitos> | ε
 <entero> ::= "0" | <digitoSincero> <lista_digitos>
-<flotante> ::= <entero> "." <entero>
+<flotante> ::= <entero> "." <entero>|
 <exponencial> ::= <entero> "e" <entero>
 <fraccion> ::= <entero> "/" <entero>
 <bool> ::= "true" | "false"
@@ -167,7 +169,26 @@ Palabras reservadas:
 <main> ::= "empty" "~" "__main__" "<|" "|>" "|:" <lista_sentencias> ":|"
 
 
+
+
 faltan arreglosssssss
+<arreglo>::= <declarar_arreglo>| <Modificar_arreglo>| <CrearArreglo>
+<Tipo_arreglo> ::= "int" | "float"
+
+//revisar cual es el indice de apertura y cual es el de posicion porque no entendi la lectura
+<declarar_arreglo> ::= "int" <separador> <ID> <indice_apertura> <entero> <indice_cierre> <fin_sentencia>| "float" <separador> <ID> <indice_apertura> <entero> <indice_cierre> <fin_sentencia>
+
+
+<crear_arreglo> ::= "int" <separador> <ID> <asignacion> <bloque_arreglo_entero> <fin_sentencia>| "float" <separador> <ID> <asignacion> <bloque_arreglo_flotante> <fin_sentencia>
+
+<bloque_arreglo_entero> ::= <abrir_bloque> <lista_enteros> <cerrar_bloque>
+<bloque_arreglo_flotante> ::= <abrir_bloque> <lista_flotantes> <cerrar_bloque>
+
+<lista_enteros> ::= <entero> | <entero> <coma> <lista_enteros>
+<lista_flotantes> ::= <flotante> | <flotante> <coma> <lista_flotantes>
+
+
+
 falta lista de sentenecias 
 
 
