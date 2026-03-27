@@ -82,6 +82,8 @@ Palabras reservadas:
 <indice_apertura>
 <indice_cierre>
 <tipo>
+<comentarioInicio>
+<comentariofinal>
 
 <param>
 <lista_params>
@@ -92,6 +94,7 @@ Palabras reservadas:
 <elemento>
 <elemento_num>
 <lista_elementos>
+<comentario>
 -------------------------mbolo inicial-------------------------
 
 
@@ -101,6 +104,13 @@ Palabras reservadas:
 <digito> ::= [0-9]
 <digitoSincero> ::=[1-9]
 <letra>::= [a-zA-Z]
+<texto> ::= <letra><texto>| <digito><texto>| " " <texto> | ε
+<comentario_inicio_linea> ::= "¡¡"
+<comentario_inicio_bloque> ::= "{-"
+<comentario_fin_bloque> ::= "-}"
+<comentario_linea> ::= <comentario_inicio_linea> <texto>
+<comentario_bloque> ::= <comentario_inicio_bloque> <texto> <comentario_fin_bloque>
+<comentario> ::= <comentario_linea> | <comentario_bloque>
 
 <bloque_inicio> ::= "|:"
 <bloque_fin> ::= ":|"
@@ -113,18 +123,20 @@ Palabras reservadas:
 <indice_apertura> ::= "<<"
 <indice_cierre> ::= ">>"
 <tipo> ::= "int" | "bool" | "float" | "string" | "char"
-
+<ID> ::= <letra> | <letra><ID> | <letra><digito><ID> | <letra><digito>
 <param> ::= <tipo> ~ ID
 <lista_params> ::= <param> | <param>, <lista_params> | ε
 <funcion> ::= <tipo> ~ ID <| <lista_params> |> |: <lista_sentencias> :|
-<lista_funciones> ::= <funcion> <lista_funciones> | <comentario> <lista_funciones>
-                        | ε
+<lista_funciones> ::= <funcion> <lista_funciones> | <comentario> <lista_funciones> | ε
 <programa> ::= <lista_funciones> <main>
 
-<decl_var> ::= <tipo> ~ ID
+<decl_variable> ::= <tipo> ~ ID
 
 <elemento> ::= <elemento_num> | CADENA | BOOL | CARACTER
-<elemento_num ::= ENTERO | FLOAT | EXPONENCIAL | FRACCION
+<elemento_num> ::= ENTERO | FLOAT | EXPONENCIAL | FRACCION
 
 <lista_elementos> ::= <elemento> | <elemento> , <lista_elementos> | ε
+
+<main> ::= __main__ <| |> |: <lista_sentencias> :|
+
 
