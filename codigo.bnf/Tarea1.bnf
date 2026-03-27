@@ -160,9 +160,15 @@ Palabras reservadas:
 
 <decl_variable> ::= <tipo> ~ <ID> <fin_sentencia> | <tipo> ~ <ID> <asignacion> <expresion> <fin_sentencia>
 
+<asignar_variable> ::= <ID> <asignacion> <expresion> <fin_sentencia>
 
 <lista_elementos> ::= <elemento> | <elemento> , <lista_elementos> | ε
 
 <main> ::= "empty" "~" "__main__" "<|" "|>" "|:" <lista_sentencias> ":|"
+
+
+faltan arreglosssssss
+falta lista de sentenecias 
+
 
 
