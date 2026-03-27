@@ -62,11 +62,10 @@ Palabras reservadas:
 "cout"
 "true"
 "false"
+"empty"
 "__main__"
 
 -------------------------No terminales-------------------------
-<digito>
-<digitoSincero>
 <letra>
 <digito>
 <digitoSinCero>
@@ -84,13 +83,14 @@ Palabras reservadas:
 <tipo>
 <comentarioInicio>
 <comentariofinal>
+<ID>
 
 <param>
 <lista_params>
 <funcion>
 <lista_funciones>
 <programa>
-<decl_var>
+<decl_variable>
 <elemento>
 <elemento_num>
 <lista_elementos>
@@ -100,11 +100,10 @@ Palabras reservadas:
 
 
 -------------------------Producciones-------------------------
-
-<digito> ::= [0-9]
-<digitoSincero> ::=[1-9]
 <letra>::= [a-zA-Z]
 <texto> ::= <letra><texto>| <digito><texto>| " " <texto> | ε
+
+
 <comentario_inicio_linea> ::= "¡¡"
 <comentario_inicio_bloque> ::= "{-"
 <comentario_fin_bloque> ::= "-}"
@@ -112,8 +111,8 @@ Palabras reservadas:
 <comentario_bloque> ::= <comentario_inicio_bloque> <texto> <comentario_fin_bloque>
 <comentario> ::= <comentario_linea> | <comentario_bloque>
 
-<bloque_inicio> ::= "|:"
-<bloque_fin> ::= ":|"
+<abrir_bloque> ::= "|:"
+<cerrar_bloque> ::= ":|"
 <fin_sentencia> ::= "!"
 <asignacion> ::= "<-"
 <separador> ::= "~"
@@ -122,24 +121,48 @@ Palabras reservadas:
 <parentesis_cierre> ::= "|>"
 <indice_apertura> ::= "<<"
 <indice_cierre> ::= ">>"
-<tipo> ::= "int" | "bool" | "float" | "string" | "char"
-<ID> ::= <letra> | <letra><ID> | <letra><digito><ID> | <letra><digito>
-<param> ::= <tipo> ~ ID
+<tipo> ::= "int" | "bool" | "float" | "string" | "char" |"empty"
+<ID> ::= <letra> <resto_id>
+<resto_id> ::= <letra> <resto_id> | <digito> <resto_id> | ε
+<param> ::= <tipo> ~ <ID>
 <lista_params> ::= <param> | <param>, <lista_params> | ε
-<funcion> ::= <tipo> ~ ID <| <lista_params> |> |: <lista_sentencias> :|
+<funcion> ::= <tipo> ~ <ID> <| <lista_params> |> |: <lista_sentencias> :|
 <lista_funciones> ::= <funcion> <lista_funciones> | <comentario> <lista_funciones> | ε
 <programa> ::= <lista_funciones> <main>
+<digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<digitoSincero> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<lista_digitos> ::= <digito> <lista_digitos> | ε
+<entero> ::= "0" | <digitoSincero> <lista_digitos>
+<flotante> ::= <entero> "." <entero>
+<exponencial> ::= <entero> "e" <entero>
+<fraccion> ::= <entero> "/" <entero>
+<bool> ::= "true" | "false"
+<cadena> ::= "\"" <texto> "\""
+<caracter> ::= "'" <letra> "'"
+<elemento_num> ::= <entero> | <flotante> | <exponencial> | <fraccion>
+<elemento> ::= <elemento_num> | <bool> | <cadena> | <caracter>
 
-FALTA HACER LA EXPRESION
+<factor> ::= <elemento_num>| <ID>| <cadena>| <parentesis_apertura> <expresion> <parentesis_cierre>
+ 
+<expresion> ::= <termino> <resto_expresion>
+
+<resto_expresion> ::= "+" <termino> <resto_expresion>| "-" <termino> <resto_expresion>| ε
+
+<termino> ::= <potencia> <resto_termino>
+
+<resto_termino> ::= "*" <potencia> <resto_termino>| "/" <potencia> <resto_termino>| "%" <potencia> <resto_termino>| ε
+
+<potencia> ::= <factor> <resto_potencia>
+
+<resto_potencia> ::= "^" <factor> <resto_potencia>| ε
+
+<factor> ::= <elemento_num>| <ID>| <cadena>| "<|" <expresion> "|>"
+
 <decl_variable> ::= <tipo> ~ <ID> <fin_sentencia> | <tipo> ~ <ID> <asignacion> <expresion> <fin_sentencia>
 
 
-FALTA DEFINIR QUE ES UN EXP Y ESOS TIPOS
-<elemento> ::= <elemento_num> | CADENA | BOOL | CARACTER
-<elemento_num> ::= ENTERO | FLOAT | EXPONENCIAL | FRACCION
-
 <lista_elementos> ::= <elemento> | <elemento> , <lista_elementos> | ε
 
-<main> ::= __main__ <| |> |: <lista_sentencias> :|
+<main> ::= "empty" "~" "__main__" "<|" "|>" "|:" <lista_sentencias> ":|"
 
 
