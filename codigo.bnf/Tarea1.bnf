@@ -130,8 +130,11 @@ Palabras reservadas:
 <lista_funciones> ::= <funcion> <lista_funciones> | <comentario> <lista_funciones> | ε
 <programa> ::= <lista_funciones> <main>
 
-<decl_variable> ::= <tipo> ~ ID
+FALTA HACER LA EXPRESION
+<decl_variable> ::= <tipo> ~ <ID> <fin_sentencia> | <tipo> ~ <ID> <asignacion> <expresion> <fin_sentencia>
 
+
+FALTA DEFINIR QUE ES UN EXP Y ESOS TIPOS
 <elemento> ::= <elemento_num> | CADENA | BOOL | CARACTER
 <elemento_num> ::= ENTERO | FLOAT | EXPONENCIAL | FRACCION
 
