@@ -92,9 +92,13 @@ Palabras reservadas:
 <programa>
 <decl_variable>
 <elemento>
-<elemento_num>
+<elemento_numerico>
 <lista_elementos>
 <comentario>
+
+<sentencia>
+<lista_sentencias>
+<bloque>
 
 <arreglo>
 -------------------------mbolo inicial-------------------------
@@ -141,28 +145,40 @@ Palabras reservadas:
 <bool> ::= "true" | "false"
 <cadena> ::= "\"" <texto> "\""
 <caracter> ::= "'" <letra> "'"
-<elemento_num> ::= <entero> | <flotante> | <exponencial> | <fraccion>
-<elemento> ::= <elemento_num> | <bool> | <cadena> | <caracter>
+<elemento_numerico> ::= <entero> | <flotante> | <exponencial> | <fraccion>
+<elemento> ::= <elemento_numerico> | <bool> | <cadena> | <caracter>
 
-<factor> ::= <elemento_num>| <ID>| <cadena>| <parentesis_apertura> <expresion> <parentesis_cierre>
+<factor> ::= <elemento_numerico>| <ID>| <cadena>| <parentesis_apertura> <expresion> <parentesis_cierre>
  
-<expresion> ::= <termino> <resto_expresion>
+<expresion> ::=
 
-<resto_expresion> ::= "+" <termino> <resto_expresion>| "-" <termino> <resto_expresion>| ε
+<expresion_relacional> ::= equal <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre> 
+                        | n_equal <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre>
+                        | less_t <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre>
+                        | less_te <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre>
+                        | greather_t <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre>
+                        | greather_te <parentesis_apertura> <expr_aritmetica> , <expr_aritmetica> <parentesis_cierre>
+                        | equal <parentesis_apertura> <expr_logica> , <expr_logica> <parentesis_cierre>
+                        | n_equal <parentesis_apertura> <expr_logica> , <expr_logica> <parentesis_cierre>
+                        | <expresion_aritmetica>
+
+<expresion_logica> ::= <expresion_logica> @ <expresion_relacional> | <expresion_logica> # <expresion_relacional> | $ <expresion_relacional> | <expresion_relacional>
+
+<expresion_aritmetica> ::= <expresion_aritmetica> "+" <termino> | <expresion_aritmetica> "-" <termino> | <termino>
 
 <termino> ::= <potencia> <resto_termino>
 
 <resto_termino> ::= "*" <potencia> <resto_termino>| "/" <potencia> <resto_termino>| "%" <potencia> <resto_termino>| ε
 
-<potencia> ::= <factor> <resto_potencia>
+<potencia> ::= <factor> <resto_potencia> | <factor>
 
 <resto_potencia> ::= "^" <factor> <resto_potencia>| ε
 
-<factor> ::= <elemento_num>| <ID>| <cadena>| "<|" <expresion> "|>"
+<factor> ::= <elemento_numerico> | <ID> | <cadena> | "<|" <expresion> "|>" | "++" <ID> | "--" ID
 
-<decl_variable> ::= <tipo> ~ <ID> <fin_sentencia> | <tipo> ~ <ID> <asignacion> <expresion> <fin_sentencia>
+<declarar_variable> ::= <tipo> ~ <ID> | <tipo> ~ <ID> <asignacion> <expresion>
 
-<asignar_variable> ::= <ID> <asignacion> <expresion> <fin_sentencia>
+<asignar_variable> ::= <ID> <asignacion> <expresion>
 
 <lista_elementos> ::= <elemento> | <elemento> , <lista_elementos> | ε
 
@@ -176,10 +192,12 @@ faltan arreglosssssss
 <Tipo_arreglo> ::= "int" | "float"
 
 //revisar cual es el indice de apertura y cual es el de posicion porque no entendi la lectura
-<declarar_arreglo> ::= "int" <separador> <ID> <indice_apertura> <entero> <indice_cierre> <fin_sentencia>| "float" <separador> <ID> <indice_apertura> <entero> <indice_cierre> <fin_sentencia>
+<declarar_arreglo> ::= "int" <separador> <ID> <indice_apertura> <entero> <indice_cierre> | "float" <separador> <ID> <indice_apertura> <entero> <indice_cierre> 
 
 
-<crear_arreglo> ::= "int" <separador> <ID> <asignacion> <bloque_arreglo_entero> <fin_sentencia>| "float" <separador> <ID> <asignacion> <bloque_arreglo_flotante> <fin_sentencia>
+<crear_arreglo> ::= "int" <separador> <ID> <asignacion> <bloque_arreglo_entero> | "float" <separador> <ID> <asignacion> <bloque_arreglo_flotante> 
+
+<acceder_arreglo> ::= <ID> <indice_apertura> <expresion>, <expresion> <indice_cierre>
 
 <bloque_arreglo_entero> ::= <abrir_bloque> <lista_enteros> <cerrar_bloque>
 <bloque_arreglo_flotante> ::= <abrir_bloque> <lista_flotantes> <cerrar_bloque>
@@ -191,5 +209,14 @@ faltan arreglosssssss
 
 falta lista de sentenecias 
 
+//hacer instrucion 
+<sentencia> ::= <declarar_variable> <fin_sentencia | <asignar_variable> <fin_sentencia 
+            | <declarar_arreglo> <fin_sentencia> | <asignar_variable> <fin_sentencia> 
+            | <crear arreglo> <fin_sentencia> | <acceder_arreglo> <asignacion> <expresion> <fin_sentencia> 
+            | <instrucion> <fin_sentencia> | <bloque> | <return> | break <fin_sentencia | <cin> | <cout> 
+            | <expresion> <fin_sentencia>
 
 
+<lista_sentencias> ::= <sentencia> <lista_sentencias> | <comentario> <lista_sentencias> | ε
+
+<bloque> ::= <abrir_bloque> <lista_sentencias> <cerrar_bloque>
