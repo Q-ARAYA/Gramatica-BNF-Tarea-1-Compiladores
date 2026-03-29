@@ -57,12 +57,3 @@ El lenguaje desarrollado incluye:
 ---
 
 
-
-##  Estado del Proyecto
-
-✔ Gramática completa
-✔ Soporte de expresiones complejas
-✔ Funciones y estructuras de control
-✔ Manejo de arreglos 1D y 2D
-
----
