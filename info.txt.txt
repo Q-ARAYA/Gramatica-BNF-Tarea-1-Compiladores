@@ -1,0 +1,7 @@
+a. Compiladores e interpretes 
+b.1 2026
+c.Elder Leon Pérez 2023166120  , Quiriat 
+e. tarea 1
+f. Fecha entrega: 28/03/2026
+g. Estatus de la entrega (debe ser CONGRUENTE con la solución entregada):  
+[Buena]
