@@ -1,4 +1,7 @@
 # 📘 Gramática BNF – Lenguaje Imperativo
+Nota: 
+	El repositorio encontrara 3 archivos este documento además de una carpeta que contiene un archivo. bnf extensión de vs únicamente para que se vea bonito y ordenado o un txt con todos los terminales no terminales y producciones. 
+Extensión: https://marketplace.visualstudio.com/items?itemName=Vallentin.vscode-bnf
 
 ## 👨‍🎓 Estudiantes
 
