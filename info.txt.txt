@@ -1,6 +1,6 @@
 a. Compiladores e interpretes 
 b.1 2026
-c.Elder Leon Pérez 2023166120  , Quiriat 
+c.Elder Leon Pérez 2023166120  , Quiriat Mata Araya 2023379891 
 e. tarea 1
 f. Fecha entrega: 28/03/2026
 g. Estatus de la entrega (debe ser CONGRUENTE con la solución entregada):  
